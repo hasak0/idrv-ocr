@@ -1,9 +1,8 @@
 # idrv-ocr
 
-OCR RECEIPT PROCESSOR:
 This project contains a Python script that leverages Amazon Web Services (AWS) for Optical Character Recognition (OCR) to automatically extract data from document images, specifically receipts and fuel meter readings. The script uses AWS Textract and Rekognition to parse text and structures the output into a clean, JSON-like format.
 
-PREREQUISITES:
+## PREREQUISITES:
 Before running the script, ensure you have the following:
 AWS Account: An active AWS account with the necessary permissions for S3, Textract, and Rekognition.
 AWS Credentials: Your AWS credentials must be configured on your system (e.g., via the AWS CLI or environment variables).
@@ -11,22 +10,25 @@ Python 3: The script is written in Python 3.
 Boto3 Library: The AWS SDK for Python. You can install it using pip:
 pip install boto3
 
-USAGE:
+### USAGE:
 The script is a command-line tool. You must provide the S3 bucket name and the document's file name as arguments.
 python ocr.py <s3-bucket-name> <document-file-name>
 
 
-EXAMPLE:
+**Example:**
+
 To process a file named receipt.png located in an S3 bucket called my-documents-bucket, run the following command:
-python ocr.py my-documents-bucket receipt.png
+
+> python ocr.py my-documents-bucket receipt.png
+
 The script will print the extracted data to the console.
 
-FILE STRUCTURE:
-ocr.py: The main Python script that handles the OCR processing and data extraction.
+## DATA TEMPLATES:
 
-DATA TEMPLATES:
 The script outputs data in one of two formats, depending on whether it identifies the document as a receipt or a meter reading.
-Receipt Data
+
+**Receipt Data:**
+~~~
 {
     "document_type": "receipt",
     "provider": "Shell",
@@ -42,9 +44,10 @@ Receipt Data
     "payment_method": "Card",
     "card_number": "1234"
 }
+~~~
+**Meter Reading Data:**
+~~~
 
-
-Meter Reading Data
 {
     "document_type": "meter",
     "provider": "Compac",
@@ -54,5 +57,5 @@ Meter Reading Data
     "file_name": "meter_reading.jpg",
     "date_processed": "29/08/23"
 }
-
+~~~
 
